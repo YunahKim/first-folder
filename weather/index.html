@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>날씨 앱</title>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
+    <link rel="preconnect" href="https://geocoding-api.open-meteo.com" crossorigin>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container header">
+      <h1>날씨</h1>
+      <div class="actions">
+        <button id="themeToggle" aria-label="테마 전환">🌓</button>
+        <button id="geoBtn" aria-label="내 위치로 보기">📍</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="search">
+        <label for="city" class="sr-only">도시 검색</label>
+        <input id="city" type="text" placeholder="도시를 입력하세요 (예: Seoul)" autocomplete="off" />
+        <ul id="suggestions" class="suggestions" role="listbox" aria-label="도시 제안"></ul>
+      </section>
+
+      <section id="status" class="status" aria-live="polite"></section>
+
+      <section id="current" class="current card" hidden>
+        <div class="current-top">
+          <div>
+            <h2 id="locationName">—</h2>
+            <p id="currentDesc" class="muted">—</p>
+          </div>
+          <div class="temp-now">
+            <span id="currentTemp">—</span><span class="unit">°C</span>
+          </div>
+        </div>
+        <div class="current-grid">
+          <div>
+            <span class="label">체감</span>
+            <span id="apparent">— °C</span>
+          </div>
+          <div>
+            <span class="label">습도</span>
+            <span id="humidity">— %</span>
+          </div>
+          <div>
+            <span class="label">바람</span>
+            <span id="wind">— m/s</span>
+          </div>
+          <div>
+            <span class="label">강수</span>
+            <span id="precip">— mm</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="forecast" class="forecast" hidden>
+        <h3>7일 예보</h3>
+        <div id="forecastGrid" class="forecast-grid"></div>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open‑Meteo 데이터</a>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
